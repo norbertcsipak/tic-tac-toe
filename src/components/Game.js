@@ -5,11 +5,12 @@ export default function Game() {
 
   const status = "Next player is X";
   const moves = <li><button>Start the Game</button></li>
+  const squares = Array(9).fill(null);
 
   return (
     <div>
       <div className='game-board'>
-        <Board> </Board>
+        <Board squares={squares}/>
       </div>
 
       <div className='game-info'>
