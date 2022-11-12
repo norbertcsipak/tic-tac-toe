@@ -33,7 +33,7 @@ li{
   top:  4px;
   box-shadow: 0 8px black, 0 14px rgba(0,0,0,0.4);
 }
-.btn:active{
+.btn.active{
   top: 8px;
   box-shadow: 0 4px black, 0 10px rgba(0,0,0,0.4);
 }
