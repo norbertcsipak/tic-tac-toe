@@ -21,22 +21,21 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-}
+};
 
 export default function Game() {
   const [state, dispatch] = useReducer(reducer, {
     xIsNext: true,
-    history: [{squares: Array(9).fill(null)}],
+    history: [{ squares: Array(9).fill(null) }],
   });
-  const [xIsNext, history] = state;
+  const { xIsNext, history } = state;
   const jumpTo = (step) => {
     dispatch({ type: 'JUMP', payload: { step } });
   }
   const handleClick = (i) => {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    const winner = calculateWinner(squares);
-
+    const winner = calculateWinner(squares[i]);
     if (winner || squares[i]) {
       return;
     };
@@ -44,9 +43,9 @@ export default function Game() {
     squares[i] = xIsNext ? 'X' : 'O';
     dispatch({ type: 'MOVE', payload: { squares } });
   };
-
   const current = history[history.length - 1];
   const winner = calculateWinner(current.squares);
+
   const status = winner
     ? winner === 'D'
       ? 'Draw'
@@ -54,7 +53,7 @@ export default function Game() {
     : 'Next player is' + (xIsNext ? 'X' : 'O');
 
   const moves = history.map((step, move) => {
-    const desc = move ? 'Go to #' + move: 'Start the Game';
+    const desc = move ? 'Go to #' + move : 'Start the Game';
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>
@@ -65,9 +64,11 @@ export default function Game() {
   });
 
   return (
-    <div className='game'>
+    <div className={winner ? 'game disabled' : 'game'}>
       <div className='game-board'>
-        <Board onClick={(i) => handleClick(i)} squares={current.squares}/>
+        <Board
+          onClick={(i) => handleClick(i)}
+          squares={current.squares}/>
       </div>
 
       <div className='game-info'>
@@ -75,7 +76,7 @@ export default function Game() {
         <ul>{moves}</ul>
       </div>
     </div>
-  )
+  );
 }
 
 const calculateWinner = (squares) => {
@@ -95,7 +96,7 @@ const calculateWinner = (squares) => {
   for(let i = 0; i < winnerLines.length; i++) {
     const [a,b,c] = winnerLines[i];
 
-    if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c] && squares[c]) {
+    if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
       return squares[a];
     }
 
@@ -104,8 +105,6 @@ const calculateWinner = (squares) => {
     }
   };
 
-  if (isDraw) {
-    return 'D';
-  }
+  if (isDraw) return 'D';
   return null;
-}
+};
