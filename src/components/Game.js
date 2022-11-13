@@ -48,8 +48,8 @@ export default function Game() {
   const status = winner
     ? winner === 'D'
       ? 'Draw'
-      : 'Winner is' + winner
-    : 'Next player is' + (xIsNext ? 'X' : 'O');
+      : 'Winner is ' +  winner
+    : 'Next player is ' + (xIsNext ? 'X' : 'O');
 
   const moves = history.map((step, move) => {
     const desc = move ? 'Go to #' + move : 'Start the Game';
