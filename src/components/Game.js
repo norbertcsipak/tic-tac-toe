@@ -35,11 +35,10 @@ export default function Game() {
   const handleClick = (i) => {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    const winner = calculateWinner(squares[i]);
+    const winner = calculateWinner(squares);
     if (winner || squares[i]) {
       return;
-    };
-
+    }
     squares[i] = xIsNext ? 'X' : 'O';
     dispatch({ type: 'MOVE', payload: { squares } });
   };
@@ -94,7 +93,7 @@ const calculateWinner = (squares) => {
   let isDraw = true;
 
   for(let i = 0; i < winnerLines.length; i++) {
-    const [a,b,c] = winnerLines[i];
+    const [a, b, c] = winnerLines[i];
 
     if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
       return squares[a];

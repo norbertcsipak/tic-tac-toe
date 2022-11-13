@@ -27,14 +27,14 @@ li{
   position: relative;
   top: 0;
 }
-.disabled .btn {
+.disabled btn {
   cursor: default;
 }
-.disabled .btn:hover {
+.disabled.btn:hover {
   top: 0;
   background: #ffffff;
-  color: #e5dc15;
-  box-shadow: 0 12px #c2bb11, 0 18px rgba(0, 0, 0, 0.4);
+  color: #eab676;
+  box-shadow: 0 12px #eab676, 0 18px rgba(0, 0, 0, 0.4);
 }
 .btn.disabled {
   cursor: default;
@@ -42,8 +42,8 @@ li{
 .btn.disabled:hover {
   top: 0;
   background: #ffffff;
-  color: #e5dc15;
-  box-shadow: 0 12px #c2bb11, 0 18px rgba(0, 0, 0, 0.4);
+  color: #eab676;
+  box-shadow: 0 12px #eab676, 0 18px rgba(0, 0, 0, 0.4);
 }
 .btn:hover{
   background-color: black;
